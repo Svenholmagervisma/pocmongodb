@@ -3,6 +3,9 @@ package pocmongodb.route;
 import org.apache.camel.builder.RouteBuilder;
 //import org.apache.camel.model.dataformat.JsonDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
+import org.apache.camel.model.rest.RestBindingMode;
+
+import com.mongodb.util.JSON;
 
 import pocmongodb.processors.*;
 import pocmongodb.util.CVRObject;
@@ -28,7 +31,7 @@ public class MyRouteBuilder extends RouteBuilder {
 		//POST new CVR DATA
 		rest("/api/update/cvr")
 			.post()
-			.to("file:C:/Users/X008235/Desktop/CamelTestfolder/outputFolder");	
+			.to("mongodb:myDb?database=mongodb&collection=jacob&operation=insert");	
 		
 		
 		
@@ -36,9 +39,9 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/all/cvr")
 			.get()
 			.route()
-			.setBody(constant("21131231, 123123123, 12314511"))
+			.setBody(constant(c1))
 			.marshal().json(JsonLibrary.Jackson)
-			.to("file:C:/Users/X008235/Desktop/CamelTestfolder/outputFolder");
+			.to("file:C:/Users/jacob.hansen/Documents/Test/testoutput");
 		
 		
 		
