@@ -31,7 +31,9 @@ public class MyRouteBuilder extends RouteBuilder {
 		//POST new CVR DATA
 		rest("/api/update/cvr")
 			.post()
-			.to("mongodb:myDb?database=mongodb&collection=jacob&operation=insert");	
+			.route()
+			.unmarshal().json(JsonLibrary.Jackson)
+			.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");	
 		
 		
 		
@@ -39,9 +41,8 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/all/cvr")
 			.get()
 			.route()
-			.setBody(constant(c1))
 			.marshal().json(JsonLibrary.Jackson)
-			.to("file:C:/Users/jacob.hansen/Documents/Test/testoutput");
+			.to("mongodb:myDb?database=POCDB&collection=company&operation=findAll");
 		
 		
 		
