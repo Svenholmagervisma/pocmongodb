@@ -1,16 +1,19 @@
-package pocmongodb;
+package pocmongodb.route;
 
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.model.dataformat.JsonDataFormat;
+//import org.apache.camel.model.dataformat.JsonDataFormat;
+import org.apache.camel.model.dataformat.JsonLibrary;
 
-import Processors.*;
+import pocmongodb.processors.*;
+import pocmongodb.util.CVRObject;
+import pocmongodb.util.TransformationBean;
 
 public class MyRouteBuilder extends RouteBuilder {
 
 	@Override
 	public void configure() throws Exception {
 		
-		JsonDataFormat jsonDataFormat = new JsonDataFormat();
+		//JsonDataFormat jsonDataFormat = new JsonDataFormat();
 		
 		CVRObject c1 = new CVRObject();
 		c1.setCvrNumber(1234);
@@ -34,6 +37,7 @@ public class MyRouteBuilder extends RouteBuilder {
 			.get()
 			.route()
 			.setBody(constant("21131231, 123123123, 12314511"))
+			.marshal().json(JsonLibrary.Jackson)
 			.to("file:C:/Users/X008235/Desktop/CamelTestfolder/outputFolder");
 		
 		

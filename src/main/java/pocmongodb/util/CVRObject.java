@@ -1,4 +1,4 @@
-package pocmongodb;
+package pocmongodb.util;
 
 public class CVRObject {
 
