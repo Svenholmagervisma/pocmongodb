@@ -33,8 +33,7 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/all/cvr")
 			.get()
 			.route()
-			//.setBody(constant("21131231, 123123123, 12314511"))
-			.setBody(jsonDataFormat(c1))
+			.setBody(constant("21131231, 123123123, 12314511"))
 			.to("file:C:/Users/X008235/Desktop/CamelTestfolder/outputFolder");
 		
 		
