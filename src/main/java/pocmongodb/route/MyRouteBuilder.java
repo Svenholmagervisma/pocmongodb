@@ -41,10 +41,10 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/update/cvr/test")
 		.post()
 		.route()
-		.unmarshal().json(JsonLibrary.Jackson)
 		.process(new MyLogProcessor())
 		.bean(new TransformationBean(), "addTimestamp")
 		.process(new MyLogProcessor())
+		.unmarshal().json(JsonLibrary.Jackson)
 		.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");	
 		
 		//GET all CVR DATA

@@ -13,11 +13,20 @@ public class TransformationBean {
 	}
 	
 	public String addTimestamp(String body) {
-		String[] splitString = body.split("}",0);
 		ArrayList<String> arrResult = new ArrayList<String>();
-		for (String s : splitString) {
-			arrResult.add(s + ", \"Timestamp\" : \"" + LocalDateTime.now().toString() + "\"}");
+		String[] splitString = body.split("}");
+		//TODO: Refactor me please.
+		if(splitString.length > 2) {
+			for (int i = 0; i < splitString.length - 1; i++) {
+				arrResult.add(splitString[i] + ", \"Timestamp\" : \"" + LocalDateTime.now() + "\"}");
+			}
+			arrResult.add("]");
+		}else {
+			for (String s : splitString) {
+				arrResult.add(s + ", \"Timestamp\" : \"" + LocalDateTime.now() + "\"}");
+			}
 		}
-		return String.join(",", arrResult);
+		
+		return String.join("", arrResult);
 	}
 }
