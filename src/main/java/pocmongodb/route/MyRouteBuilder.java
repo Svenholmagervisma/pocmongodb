@@ -5,6 +5,7 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 
+import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
 import pocmongodb.processors.*;
@@ -32,10 +33,19 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/update/cvr")
 			.post()
 			.route()
+			.bean(new TransformationBean(), "addTimestamp")
 			.unmarshal().json(JsonLibrary.Jackson)
-			.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");	
+			.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");
 		
-		
+		//Test 
+		rest("/api/update/cvr/test")
+		.post()
+		.route()
+		.unmarshal().json(JsonLibrary.Jackson)
+		.process(new MyLogProcessor())
+		.bean(new TransformationBean(), "addTimestamp")
+		.process(new MyLogProcessor())
+		.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");	
 		
 		//GET all CVR DATA
 		rest("/api/all/cvr")
