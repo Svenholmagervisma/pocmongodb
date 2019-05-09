@@ -1,5 +1,6 @@
 package pocmongodb.util;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -18,12 +19,12 @@ public class TransformationBean {
 		//TODO: Refactor me please.
 		if(splitString.length > 2) {
 			for (int i = 0; i < splitString.length - 1; i++) {
-				arrResult.add(splitString[i] + ", \"Timestamp\" : \"" + LocalDateTime.now() + "\"}");
+				arrResult.add(splitString[i] + ", \"Timestamp\" : \"" + Instant.now().getEpochSecond() + "\"}");
 			}
 			arrResult.add("]");
 		}else {
 			for (String s : splitString) {
-				arrResult.add(s + ", \"Timestamp\" : \"" + LocalDateTime.now() + "\"}");
+				arrResult.add(s + ", \"Timestamp\" : \"" + Instant.now().getEpochSecond() + "\"}");
 			}
 		}
 		
