@@ -1,9 +1,7 @@
 package pocmongodb.util;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class TransformationBean {
 	
@@ -31,4 +29,6 @@ public class TransformationBean {
 		
 		return String.join("", arrResult);
 	}
+	
+	
 }

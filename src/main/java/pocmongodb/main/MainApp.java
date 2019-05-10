@@ -11,7 +11,7 @@ public class MainApp {
 		
 		System.out.println("Application context started");
 		try {
-            Thread.sleep(5 * 60 * 1000);
+            Thread.sleep(15 * 60 * 1000);
         }
         catch (InterruptedException e) {
             e.printStackTrace();
