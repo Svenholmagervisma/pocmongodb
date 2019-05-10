@@ -44,8 +44,8 @@ public class MyRouteBuilder extends RouteBuilder {
 			.route()
 			.to("log:mitpunkt5?showAll=true")
 			.split().method("MyJsonSplitterBean", "splitBody")
-			.to("log:mitpunkt5?showAll=true")
-			.process(new MyLogProcessor())
+			//.to("log:mitpunkt5?showAll=true")
+			.bean(new CVRObjectBean(), "CVRDataToObject")
 			.to("mongodb:myDb?database=POCDB&collection=company&operation=save");
 
 	
