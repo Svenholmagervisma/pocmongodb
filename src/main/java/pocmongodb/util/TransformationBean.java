@@ -15,9 +15,10 @@ public class TransformationBean {
 	
 	public String addTimestamp(String body) {
 		ArrayList<String> arrResult = new ArrayList<String>();
-		String[] splitString = body.split("}");
+		String changedCVRBody = body.replace("CVR", "_id");
+		String[] splitString = changedCVRBody.split("}");
 		//TODO: Refactor me please.
-		if(splitString.length > 2) {
+		if(splitString.length >= 3) {
 			for (int i = 0; i < splitString.length - 1; i++) {
 				arrResult.add(splitString[i] + ", \"Timestamp\" : \"" + Instant.now().getEpochSecond() + "\"}");
 			}

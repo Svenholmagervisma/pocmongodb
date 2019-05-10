@@ -1,10 +1,12 @@
 package pocmongodb.route;
 
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.component.mongodb.MongoDbConstants;
 //import org.apache.camel.model.dataformat.JsonDataFormat;
 import org.apache.camel.model.dataformat.JsonLibrary;
 import org.apache.camel.model.rest.RestBindingMode;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
 
@@ -35,23 +37,28 @@ public class MyRouteBuilder extends RouteBuilder {
 			.route()
 			.bean(new TransformationBean(), "addTimestamp")
 			.unmarshal().json(JsonLibrary.Jackson)
+			.to("log:mitpunkt1?showAll=true")
 			.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");
 		
 		//Test 
 		rest("/api/update/cvr/test")
 		.post()
 		.route()
+		.to("log:mitpunkt2?showAll=true")
 		.process(new MyLogProcessor())
 		.bean(new TransformationBean(), "addTimestamp")
 		.process(new MyLogProcessor())
 		.unmarshal().json(JsonLibrary.Jackson)
-		.to("mongodb:myDb?database=POCDB&collection=company&operation=insert");	
+		.to("mongodb:myDb?database=POCDB&collection=company&operation=save");
+		
 		
 		//GET all CVR DATA
 		rest("/api/all/cvr")
 			.get()
 			.route()
 			.marshal().json(JsonLibrary.Jackson)
+			.process(new MyLogProcessor())
+			.to("log:mitpunkt3?showAll=true")
 			.to("mongodb:myDb?database=POCDB&collection=company&operation=findAll");
 		
 		
