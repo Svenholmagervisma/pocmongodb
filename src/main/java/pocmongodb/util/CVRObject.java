@@ -1,10 +1,8 @@
 package pocmongodb.util;
 
 public class CVRObject {
-
 	private int _id;
 	private long timestamp;
-	private String data;
 	
 	public CVRObject() {
 	}
@@ -24,13 +22,4 @@ public class CVRObject {
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
-	
-	public String getData() {
-		return data;
-	}
-	
-	public void setData(String data) {
-		this.data = data;
-	}
-	
 }

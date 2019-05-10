@@ -32,14 +32,4 @@ public class TransformationBean {
 		
 		return String.join("", arrResult);
 	}
-	
-	public String convertJsonArray(String body) {
-		
-		JSONArray jsonArray = new JSONArray(body);
-		for(int i=0; i<jsonArray.length(); i++) {
-		    JSONObject jsonObject = jsonArray.getJSONObject(i);
-		    String jsonObjectAsString = jsonObject.toString();
-		}
-		return "jsonObjectAsString";
-	}
 }
