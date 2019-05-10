@@ -3,6 +3,9 @@ package pocmongodb.util;
 import java.time.Instant;
 import java.util.ArrayList;
 
+import org.json.JSONObject;
+import org.json.JSONArray;
+
 public class TransformationBean {
 	
 	public String makeUpperCase(String body) {
@@ -30,5 +33,13 @@ public class TransformationBean {
 		return String.join("", arrResult);
 	}
 	
-	
+	public String convertJsonArray(String body) {
+		
+		JSONArray jsonArray = new JSONArray(body);
+		for(int i=0; i<jsonArray.length(); i++) {
+		    JSONObject jsonObject = jsonArray.getJSONObject(i);
+		    String jsonObjectAsString = jsonObject.toString();
+		}
+		return "jsonObjectAsString";
+	}
 }

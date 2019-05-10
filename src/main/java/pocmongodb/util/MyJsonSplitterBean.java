@@ -3,17 +3,20 @@ package pocmongodb.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class MyJsonSplitterBean {
 
 	    public List<String> splitBody(String body) {
-	    	System.out.println("body: " + body);
-	        List<String> answer = new ArrayList<String>();
-	        String[] parts = body.split(",");
-	        for (String part : parts) {
-	            answer.add(part);
-	            
-	        }
-	        System.out.println("splitBodypart: " + answer);
+	    	List<String> answer = new ArrayList<String>();
+	    	JSONArray jsonArray = new JSONArray(body);
+			for(int i=0; i<jsonArray.length(); i++) {
+			    JSONObject jsonObject = jsonArray.getJSONObject(i);
+			    String jsonObjectAsString = jsonObject.toString();
+			    answer.add(jsonObjectAsString);
+			}
+			System.out.println(answer);
 	        return answer;
 	    }
 }

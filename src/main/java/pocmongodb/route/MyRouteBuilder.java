@@ -42,7 +42,7 @@ public class MyRouteBuilder extends RouteBuilder {
 		rest("/api/update/cvr/test2")
 			.post()
 			.route()
-			.to("log:mitpunkt5?showAll=true")
+			//.to("log:mitpunkt5?showAll=true")
 			.split().method("MyJsonSplitterBean", "splitBody")
 			//.to("log:mitpunkt5?showAll=true")
 			.bean(new CVRObjectBean(), "CVRDataToObject")
