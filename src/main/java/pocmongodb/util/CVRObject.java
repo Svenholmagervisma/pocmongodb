@@ -22,4 +22,5 @@ public class CVRObject {
 	public void setTimestamp(long timestamp) {
 		this.timestamp = timestamp;
 	}
+
 }

@@ -13,7 +13,7 @@ public class CVRObjectBean {
 		JSONObject json = new JSONObject(body);
 		Long cvr = json.getLong("CVR");
 
-		CVRObject newObj = new CVRObject();		
+		CVRObject newObj = new CVRObject();
 		newObj.set_id(cvr);
 		newObj.setTimestamp(Instant.now().getEpochSecond());
 		
@@ -21,7 +21,8 @@ public class CVRObjectBean {
 		String jsonInString = mapper.writeValueAsString(newObj);	
 		
 		String newString = jsonInString.replace(jsonInString.substring(jsonInString.length() - 1), ",\"data\":"+ body + "}");
-		
+		System.out.println(jsonInString);
+
 		return newString;
 	}
 }
