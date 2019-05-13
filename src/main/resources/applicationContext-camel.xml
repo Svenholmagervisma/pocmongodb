@@ -14,4 +14,5 @@
 		<constructor-arg index="0" value="localhost"></constructor-arg>
 	</bean>
 	<bean id="MyJsonSplitterBean" class="pocmongodb.util.MyJsonSplitterBean"/>
+	<bean id="OutputObjectBean" class="pocmongodb.util.OutputObjectBean"/>
 </beans>
